@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Models.Exceptions;
 using Nancy;
 using Service.Dtos;
@@ -9,7 +8,7 @@ namespace Service
     public sealed partial class Service
     {
 
-        private async Task<Response> Get(dynamic parameters)
+        private Response Get(dynamic parameters)
         {
             Guid gid;
 
@@ -27,7 +26,7 @@ namespace Service
 
             try
             {
-                return await Response.AsJson(_domainEntityProcess.GetIt(domainEntity).ToDto());
+                return Response.AsJson(_domainEntityProcess.GetIt(domainEntity).ToDto());
             }
             catch (BusinessRuleException e)
             {
